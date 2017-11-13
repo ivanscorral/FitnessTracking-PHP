@@ -44,7 +44,7 @@
         Distancia (m):  <input type="text" name="distancia"><br>
         Intensidad:  <input type="text" name="intensidad"><br>
         <input type="submit" value="Añadir" name="add">
-        </form>'; 
+        </form>';
 
     class Actividad {
         public $nombreActividad;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2017 a las 00:07:56
+-- Tiempo de generación: 14-11-2017 a las 00:28:14
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -57,6 +57,20 @@ CREATE TABLE `entrenamiento` (
   `id_actividad` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(3) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `pwd` varchar(128) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `surname` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
@@ -75,6 +89,13 @@ ALTER TABLE `entrenamiento`
   ADD KEY `id_actividad` (`id_actividad`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -89,6 +110,12 @@ ALTER TABLE `actividad`
 --
 ALTER TABLE `entrenamiento`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
