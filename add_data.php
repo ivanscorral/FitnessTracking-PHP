@@ -10,10 +10,14 @@
     $test = $conexion->query("SET NAMES 'utf8'");
 
     if(isset($_POST['add'])){
-        add($conexion);
+        insertarEntrenamiento($conexion);
     }
 
-    function add($conexion){
+    function registro($conexion){
+        
+    }
+
+    function insertarEntrenamiento($conexion){
         $id_actividad = $_POST['tipoActividad'];
         $duracion = $_POST['duracion'];
         $distancia = $_POST['distancia'];
