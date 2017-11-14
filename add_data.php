@@ -1,5 +1,7 @@
 <?php
     $conexion = new mysqli("localhost", "root" ,"" , "datos_fitness");
+    session_start();
+    $username = $_SESSION['username'];
 
     //Comprobar si hay error al conectar
 
@@ -10,19 +12,21 @@
     $test = $conexion->query("SET NAMES 'utf8'");
 
     if(isset($_POST['add'])){
-        insertarEntrenamiento($conexion);
+        insertarEntrenamiento($conexion, $username);
     }
 
-    function registro($conexion){
-
+    function get_user_id($conexion, $username){
+      $query = $conexion->query('SELECT id FROM usuarios WHERE username="'.$username.'"');
+      return $query->fetch_assoc()['id'];
     }
 
-    function insertarEntrenamiento($conexion){
+    function insertarEntrenamiento($conexion, $username){
         $id_actividad = $_POST['tipoActividad'];
         $duracion = $_POST['duracion'];
         $fecha = $_POST['date'];
         $distancia = $_POST['distancia'];
-        $intensidad;
+        $id_usuario = get_user_id($conexion, $username);
+        $intensidad = 0;
         $insertQuery;
 
         if(isset($_POST['intensidad'])){
@@ -32,14 +36,12 @@
         $query = $conexion->query('SELECT intensidad FROM actividad WHERE id='.$id_actividad);
         $hasIntensidad = $query->fetch_assoc()['intensidad'];
 
-        //TODO AÑADIR ID DE USUARIO AL INSERT
-        
         if($hasIntensidad){
-            $insert = $conexion->query('INSERT INTO entrenamiento(duracion, distancia, intensidad, id_actividad, fecha) VALUES ('.$duracion.', '.$distancia.', '.$intensidad.', '. $id_actividad.', '.', "'.$fecha .'")');
+            $insert = $conexion->query('INSERT INTO entrenamiento(duracion, distancia, intensidad, id_actividad, id_usuario, fecha) VALUES ('.$duracion.', '.$distancia.', '.$intensidad.', '. $id_actividad.', '. $id_usuario.', '.', "'.$fecha .'")');
         }else{
-            $insert = $conexion->query('INSERT INTO entrenamiento(duracion, distancia, id_actividad, fecha) VALUES ('.$duracion.', '.$distancia.', '.$id_actividad.', "'.$fecha .'")');
+            $insert = $conexion->query('INSERT INTO entrenamiento(duracion, distancia, id_actividad, id_usuario, fecha) VALUES ('.$duracion.', '.$distancia.', '. $id_actividad.', '. $id_usuario.', "'.$fecha .'")');
         }
-        header("Location: index.php?sucess=true ",true,303);
+        header("Location: index.php?sucess=true");
         exit();
     }
 ?>
