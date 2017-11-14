@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2017 a las 00:37:08
+-- Tiempo de generación: 14-11-2017 a las 14:53:43
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -25,6 +25,27 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `actividad`
+--
+
+CREATE TABLE `actividad` (
+  `id` int(3) NOT NULL,
+  `nombre` varchar(20) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `intensidad` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id`, `nombre`, `intensidad`) VALUES
+(1, 'Correr (cinta)', 0),
+(2, 'Bicicleta estática', 1),
+(3, 'Ergómetro', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `entrenamiento`
 --
 
@@ -37,9 +58,29 @@ CREATE TABLE `entrenamiento` (
   `id_usuario` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(3) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `pwd` varchar(128) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `surname` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `entrenamiento`
@@ -50,14 +91,33 @@ ALTER TABLE `entrenamiento`
   ADD KEY `id_usuario` (`id_usuario`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `actividad`
+--
+ALTER TABLE `actividad`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `entrenamiento`
 --
 ALTER TABLE `entrenamiento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
