@@ -6,7 +6,7 @@
     if($conexion->connect_errno){
         echo 'Error en la conexion SQL: ' . $conexion->connect_error;
     }
-
+	//commit test
     $test = $conexion->query("SET NAMES 'utf8'");
 
     if(isset($_POST['add'])){
