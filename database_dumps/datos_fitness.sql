@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2017 a las 14:53:43
+-- Tiempo de generación: 14-11-2017 a las 21:31:17
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -34,15 +34,6 @@ CREATE TABLE `actividad` (
   `intensidad` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `actividad`
---
-
-INSERT INTO `actividad` (`id`, `nombre`, `intensidad`) VALUES
-(1, 'Correr (cinta)', 0),
-(2, 'Bicicleta estática', 1),
-(3, 'Ergómetro', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -51,11 +42,12 @@ INSERT INTO `actividad` (`id`, `nombre`, `intensidad`) VALUES
 
 CREATE TABLE `entrenamiento` (
   `id` int(5) NOT NULL,
-  `duracion` int(10) UNSIGNED NOT NULL,
+  `duracion` decimal(4,2) UNSIGNED NOT NULL,
   `distancia` int(5) UNSIGNED NOT NULL,
-  `intensidad` int(2) UNSIGNED DEFAULT NULL,
+  `intensidad` decimal(2,1) UNSIGNED DEFAULT NULL,
   `id_actividad` int(3) DEFAULT NULL,
-  `id_usuario` int(3) NOT NULL
+  `id_usuario` int(3) NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -67,7 +59,7 @@ CREATE TABLE `entrenamiento` (
 CREATE TABLE `usuarios` (
   `id` int(3) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `pwd` varchar(128) DEFAULT NULL,
+  `pwd` varchar(255) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
   `surname` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -111,13 +103,13 @@ ALTER TABLE `actividad`
 -- AUTO_INCREMENT de la tabla `entrenamiento`
 --
 ALTER TABLE `entrenamiento`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
