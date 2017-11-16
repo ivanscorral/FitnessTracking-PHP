@@ -20,7 +20,7 @@
 
     function get_entrenamientos($conexion, $user_id){
       $entrenamientos = array();
-      $query = $conexion->query('SELECT id_actividad, duracion, distancia, intensidad, fecha FROM entrenamiento WHERE id_usuario='.$user_id.' ORDER BY fecha asc');
+      $query = $conexion->query('SELECT id_actividad, duracion, distancia, intensidad, fecha FROM entrenamiento WHERE id_usuario='.$user_id.' ORDER BY fecha asc, id_actividad');
 
       while($respuesta = $query->fetch_assoc()){
         $respuesta['intensidad'] += 0;
