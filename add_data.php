@@ -1,5 +1,5 @@
 <?php
-    $conexion = new mysqli("localhost", "root" ,"" , "datos_fitness");
+    $conexion = new mysqli("localhost", "root" ,"password" , "datos_fitness");
     session_start();
     $username = $_SESSION['username'];
 

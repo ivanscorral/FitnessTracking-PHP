@@ -1,6 +1,6 @@
 <?php
 
-  $conexion = new mysqli("localhost", "root" ,"" , "datos_fitness");
+  $conexion = new mysqli("localhost", "root" ,"password" , "datos_fitness");
 
   //Comprobar si hay error al conectar
 
