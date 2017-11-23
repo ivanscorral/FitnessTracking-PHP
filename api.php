@@ -4,7 +4,7 @@
   //TODO AÑADIR AUTH
 
   if(isset($_GET['username'])){
-    $conexion = new mysqli("localhost", "root" ,"" , "datos_fitness");
+    $conexion = new mysqli("localhost", "root" ,"password" , "datos_fitness");
 
     if($conexion->connect_errno){
         echo 'Error en la conexion SQL: ' . $conexion->connect_error;
