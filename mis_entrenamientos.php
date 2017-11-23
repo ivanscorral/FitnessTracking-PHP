@@ -65,10 +65,11 @@
 
         }
         echo '</table>';
-      }
 
-     ?>
-     <a href="index.php">Volver</a>
-     <a href="logout.php">Cerrar sesión</a>
+
+        echo '<a href="index.php">Volver</a>
+              <a href="logout.php">Cerrar sesión</a>';
+      }
+  ?>
 </body>
 </html>
