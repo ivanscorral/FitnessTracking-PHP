@@ -43,24 +43,26 @@
                 </tr>';
 
         foreach ($entrenamientos as $entrenamiento) {
-          echo '<tr>';
-          foreach ($entrenamiento as $indice =>$valor) {
-            if(strcmp($indice, 'id_actividad') != 0){
-              if(strcmp($indice, 'fecha') == 0){
-                if(strcmp($valor, $previous_date) != 0){
-                  echo '<td colspan="5" bgcolor="grey">'.$valor.'</td>';
+
+          if(strcmp($entrenamiento['fecha'], $previous_date) != 0){
+            echo '<tr colspan="5" bgcolor="grey">'.$valor.'</tr>';
+            $previous_date = $entrenamiento['fecha'];
+          }else{
+            echo '<tr>';
+            foreach ($entrenamiento as $indice =>$valor) {
+              if(strcmp($indice, 'id_actividad') != 0){
+                if($valor != null){
+                  echo '<td>'.$valor.'</td>';
+                }else{
+                  echo '<td bgcolor="grey"></td>';
                 }
-              }
-              if($valor != null){
-                echo '<td>'.$valor.'</td>';
               }else{
-                echo '<td bgcolor="grey"></td>';
+                echo '<td>'.$actividades[$valor].'</td>';
               }
-            }else{
-              echo '<td>'.$actividades[$valor].'</td>';
             }
+            echo '</tr>';
           }
-          echo '</tr>';
+
 
         }
         echo '</table>';
