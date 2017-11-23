@@ -19,6 +19,7 @@
       }
 
       function crearTablas($username){
+        $previous_date = '';
         //conexion sql
         $conexion = new mysqli("localhost", "root" ,"password" , "datos_fitness");
         if($conexion->connect_errno){
@@ -45,6 +46,11 @@
           echo '<tr>';
           foreach ($entrenamiento as $indice =>$valor) {
             if(strcmp($indice, 'id_actividad') != 0){
+              if(strcmp($indice, 'fecha') == 0){
+                if(strcmp($valor, $previous_date) != 0){
+                  echo '<td colspan="5" bgcolor="grey">'.$valor.'</td>';
+                }
+              }
               if($valor != null){
                 echo '<td>'.$valor.'</td>';
               }else{
