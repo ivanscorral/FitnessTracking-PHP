@@ -45,7 +45,7 @@
         foreach ($entrenamientos as $entrenamiento) {
 
           if(strcmp($entrenamiento['fecha'], $previous_date) != 0){
-            //echo '<tr colspan="5" bgcolor="grey">'.$entrenamiento['fecha'].'</tr>';
+            echo '<tr colspan="5" bgcolor="grey">'.$entrenamiento['fecha'].'</tr>';
             $previous_date = $entrenamiento['fecha'];
           }else{
             echo '<tr>';
